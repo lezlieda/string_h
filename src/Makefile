@@ -19,12 +19,6 @@ s21_string.a:
 
 test: s21_string.a
 	$(CC) $(CFLAGS) $(S21_SUITE_C) main.c
-	$(CC) $(OFLAGS) test $(S21_SUITE_O) main.o s21_string.a -lcheck -lm
-	rm -rf *.o *.a
-	./test
-
-valgrind: s21_string.a
-	$(CC) $(CFLAGS) $(S21_SUITE_C) main.c
 	$(CC) $(OFLAGS) test $(S21_SUITE_O) main.o s21_string.a -lcheck -lm -lsubunit
 	rm -rf *.o *.a
 	./test
@@ -34,7 +28,7 @@ gcov_report:
 	ar r s21_string.a $(S21_STRING_O)
 	ranlib s21_string.a
 	$(CC) $(CFLAGS) $(S21_SUITE_C) main.c
-	$(CC) --coverage $(OFLAGS) test $(S21_SUITE_O) main.o s21_string.a -lcheck -lm
+	$(CC) --coverage $(OFLAGS) test $(S21_SUITE_O) main.o s21_string.a -lcheck -lm -lsubunit
 	rm -rf *.o *.a
 	./test
 	# gcov s21*.gcda
